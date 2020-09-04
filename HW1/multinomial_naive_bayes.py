@@ -41,6 +41,10 @@ class MultinomialNaiveBayes(LinearClassifier):
 
 
         # YOUR CODE HERE
+
+        # count the number of occurrences of each class in training set, convert into probability
+        prior = np.array([np.count_nonzero(y == [i]) / len(y) for i in range(n_classes)])
+        print(prior)
         
 
 
