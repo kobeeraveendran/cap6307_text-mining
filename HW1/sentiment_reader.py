@@ -78,7 +78,7 @@ def build_dicts():
 
     # remove all features that occur less than 5 (threshold) times
     to_remove = []
-    for key, value in feat_counts.iteritems():
+    for key, value in feat_counts.items():
         if value < 5:
             to_remove.append(key)
     for key in to_remove:
