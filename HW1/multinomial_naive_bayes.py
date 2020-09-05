@@ -14,11 +14,14 @@ class MultinomialNaiveBayes(LinearClassifier):
         
     def train(self, x, y):
         # n_docs = no. of documents
-        # n_words = no. of unique words    
+        # n_words = no. of unique words 
+        print(x[0])   
         n_docs, n_words = x.shape
         
         # classes = a list of possible classes
         classes = np.unique(y)
+
+        print(classes)
         
         # n_classes = no. of classes
         n_classes = np.unique(y).shape[0]
@@ -43,8 +46,22 @@ class MultinomialNaiveBayes(LinearClassifier):
         # YOUR CODE HERE
 
         # count the number of occurrences of each class in training set, convert into probability
-        prior = np.array([np.count_nonzero(y == [i]) / len(y) for i in range(n_classes)])
+        prior = np.array([np.count_nonzero(y == [i]) / len(y) for i in classes])
         print(prior)
+
+        bags = [{} for _ in classes]
+        bag_sizes = [0] * n_classes
+
+        for doc in range(len(x)):
+            
+            c = y[doc][0]
+            for word in x[doc]:
+                bags[c][word] = bags[c].setdefault(word, 0) + 1
+                bag_sizes[c] += 1
+
+
+        print(bags[0])
+        print(bag_sizes)
         
 
 
