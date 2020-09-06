@@ -1,6 +1,6 @@
 import numpy as np
 from linear_classifier import LinearClassifier
-np.set_printoptions(threshold = np.inf)
+
 
 class MultinomialNaiveBayes(LinearClassifier):
 
@@ -45,36 +45,24 @@ class MultinomialNaiveBayes(LinearClassifier):
         # count the number of occurrences of each class in training set, convert into probability
         prior = np.array([np.count_nonzero(y == [i]) / len(y) for i in classes])
 
-        #bags = [[0] * n_words] * n_classes
+        # keep track of total number of words belonging to class c
         bag_sizes = [0] * n_classes
 
+        # count category-wise occurrences of words, track num. of words per category
         for doc in range(len(x)):
             c = y[doc][0]
 
             for word in range(len(x[doc])):
                 likelihood[word, c] += x[doc][word]
-                # bags[c][word] += x[doc][word]
                 bag_sizes[c] += 1
 
-        # for doc in range(len(x)):
-            
-        #     c = y[doc][0]
-        #     for word in x[doc]:
-        #         bags[c][word] = bags[c].setdefault(int(word), 0) + 1
-        #         bag_sizes[c] += 1
-
-
-        # print(bags[0])
-        # print(bag_sizes)
-
-        for i in range(len(likelihood)):
-            for j in range(len(likelihood[0])):
-                likelihood[i][j] += 1
-                likelihood[i][j] /= (bag_sizes[j] + n_words)
-        
-        # for c in range(len(bags)):
-        #     for word, count in bags[c].items():
-        #         likelihood[word, c] = (count + 1) / (bag_sizes[c] + n_words)
+        # convert word frequencies into probabilities (with or without smoothing)
+        for word in range(len(likelihood)):
+            for c in range(len(likelihood[0])):
+                if self.smooth:
+                    likelihood[word, c] = (likelihood[word, c] + self.smooth_param) / (bag_sizes[c] + n_words)
+                else:
+                    likelihood[word, c] /= bag_sizes[c]
 
 
         ###########################
