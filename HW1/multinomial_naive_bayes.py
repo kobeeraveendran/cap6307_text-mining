@@ -1,6 +1,6 @@
 import numpy as np
 from linear_classifier import LinearClassifier
-
+np.set_printoptions(threshold = np.inf)
 
 class MultinomialNaiveBayes(LinearClassifier):
 
@@ -15,13 +15,10 @@ class MultinomialNaiveBayes(LinearClassifier):
     def train(self, x, y):
         # n_docs = no. of documents
         # n_words = no. of unique words 
-        print(x[0])   
         n_docs, n_words = x.shape
         
         # classes = a list of possible classes
         classes = np.unique(y)
-
-        print(classes)
         
         # n_classes = no. of classes
         n_classes = np.unique(y).shape[0]
@@ -47,22 +44,37 @@ class MultinomialNaiveBayes(LinearClassifier):
 
         # count the number of occurrences of each class in training set, convert into probability
         prior = np.array([np.count_nonzero(y == [i]) / len(y) for i in classes])
-        print(prior)
 
-        bags = [{} for _ in classes]
+        #bags = [[0] * n_words] * n_classes
         bag_sizes = [0] * n_classes
 
         for doc in range(len(x)):
-            
             c = y[doc][0]
-            for word in x[doc]:
-                bags[c][word] = bags[c].setdefault(word, 0) + 1
+
+            for word in range(len(x[doc])):
+                likelihood[word, c] += x[doc][word]
+                # bags[c][word] += x[doc][word]
                 bag_sizes[c] += 1
 
+        # for doc in range(len(x)):
+            
+        #     c = y[doc][0]
+        #     for word in x[doc]:
+        #         bags[c][word] = bags[c].setdefault(int(word), 0) + 1
+        #         bag_sizes[c] += 1
 
-        print(bags[0])
-        print(bag_sizes)
+
+        # print(bags[0])
+        # print(bag_sizes)
+
+        for i in range(len(likelihood)):
+            for j in range(len(likelihood[0])):
+                likelihood[i][j] += 1
+                likelihood[i][j] /= (bag_sizes[j] + n_words)
         
+        # for c in range(len(bags)):
+        #     for word, count in bags[c].items():
+        #         likelihood[word, c] = (count + 1) / (bag_sizes[c] + n_words)
 
 
         ###########################
