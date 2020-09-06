@@ -64,7 +64,6 @@ class MultinomialNaiveBayes(LinearClassifier):
                 else:
                     likelihood[word, c] /= bag_sizes[c]
 
-
         ###########################
 
         params = np.zeros((n_words+1,n_classes))
