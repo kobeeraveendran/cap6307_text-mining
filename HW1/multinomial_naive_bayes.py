@@ -4,13 +4,13 @@ from linear_classifier import LinearClassifier
 
 class MultinomialNaiveBayes(LinearClassifier):
 
-    def __init__(self):
+    def __init__(self, smoothing = True, smoothing_param = 1):
         LinearClassifier.__init__(self)
         self.trained = False
         self.likelihood = 0
         self.prior = 0
-        self.smooth = True
-        self.smooth_param = 1
+        self.smooth = smoothing
+        self.smooth_param = smoothing_param
         
     def train(self, x, y):
         # n_docs = no. of documents
