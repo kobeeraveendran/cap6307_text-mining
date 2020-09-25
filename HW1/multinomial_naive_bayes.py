@@ -4,13 +4,13 @@ from linear_classifier import LinearClassifier
 
 class MultinomialNaiveBayes(LinearClassifier):
 
-    def __init__(self, smoothing = True, smoothing_param = 1):
+    def __init__(self, smoothing, smooth_param = 0):
         LinearClassifier.__init__(self)
         self.trained = False
         self.likelihood = 0
         self.prior = 0
         self.smooth = smoothing
-        self.smooth_param = smoothing_param
+        self.smooth_param = smooth_param
         
     def train(self, x, y):
         # n_docs = no. of documents
@@ -54,7 +54,7 @@ class MultinomialNaiveBayes(LinearClassifier):
 
             for word in range(len(x[doc])):
                 likelihood[word, c] += x[doc][word]
-                bag_sizes[c] += 1
+                bag_sizes[c] += x[doc][word]
 
         # convert word frequencies into probabilities (with or without smoothing)
         for word in range(len(likelihood)):
