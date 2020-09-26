@@ -3,3 +3,5 @@ __pycache__/
 .DS_STORE
 *.zip
 hw2/20news-*
+hw2/train/
+hw2/test/
