@@ -1,0 +1,9 @@
+name: nlp
+channels:
+  - defaults
+dependencies:
+  - spacy=2.3.1
+  - python=3.7
+  - numpy=1.19.1
+  - nltk
+  - scikit-learn=0.23.2
