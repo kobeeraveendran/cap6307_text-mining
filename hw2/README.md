@@ -3,7 +3,7 @@
 ### Setting up the dataset
 
 #### Manual
-1. Download the 20Newsgroups [dataset](http://qwone.com/~jason/20Newsgroups/20news-bydate.tar.gz).
+1. Download the [20Newsgroups dataset](http://qwone.com/~jason/20Newsgroups/20news-bydate.tar.gz).
 2. Move the `.tar.gz` file to this project's root directory and extract its contents.
 3. Rename `20news-bydate-train/` to `train/` and `20news-bydate-test/` to `test/` (you can now delete `20news-bydate.tar.gz`).
 4. In the train and test folders, remove all folders except `rec.autos` and `rec.sport.hockey`.
@@ -14,3 +14,24 @@
 ```bash
 ./setup.sh
 ```
+
+### Usage
+In order to run the program, you can use my provided conda environment or install the necessary libraries yourself.
+
+Activate my conda environment by running the following in your terminal at the project's root directory:
+
+```bash
+conda env create -f nlp_environment.yml
+conda activate nlp
+```
+
+OR:
+
+Install the following packages (with exact versions specified) using your package manager of choice:
+
+* spacy == 2.3.1
+* python == 3.7
+* numpy == 1.19.1
+* scikit-learn == 0.23.2
+
+Once complete, run `text_classifer.py`.
