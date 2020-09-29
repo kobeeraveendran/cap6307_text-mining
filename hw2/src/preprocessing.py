@@ -20,7 +20,7 @@ def build_dataset():
     # read autos docs, ignoring header portions of files
     index = 0
 
-    print("Preprocessing autos training set...")
+    print("\nPreprocessing autos training set...")
     start = time.time()
 
     for filenum, file in enumerate(glob.glob("../train/rec.autos/*")):
@@ -67,7 +67,7 @@ def build_dataset():
     end = time.time()
     print("Completed processing of autos training set. Time elapsed: {:.2f}s".format(end - start))
 
-    print("Preprocessing hockey training set...")
+    print("\nPreprocessing hockey training set...")
     start = time.time()
 
     # read hockey docs, ignoring headers
