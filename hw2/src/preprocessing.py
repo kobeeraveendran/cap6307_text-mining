@@ -2,6 +2,7 @@ import numpy as np
 import spacy
 import glob
 from sklearn.utils import shuffle
+import time
 
 def build_dataset():
 
@@ -18,6 +19,10 @@ def build_dataset():
 
     # read autos docs, ignoring header portions of files
     index = 0
+
+    print("Preprocessing autos training set...")
+    start = time.time()
+
     for filenum, file in enumerate(glob.glob("../train/rec.autos/*")):
         #print(file)
         with open(file, encoding = 'utf8', errors = 'ignore') as f:
@@ -59,7 +64,11 @@ def build_dataset():
             X_train.append(curr_doc)
             y_train.append(0)
 
-    print("Processed autos training set!")
+    end = time.time()
+    print("Completed processing of autos training set. Time elapsed: {:.2f}s".format(end - start))
+
+    print("Preprocessing hockey training set...")
+    start = time.time()
 
     # read hockey docs, ignoring headers
     for file in glob.glob("../train/rec.sport.hockey/*"):
@@ -101,7 +110,8 @@ def build_dataset():
             X_train.append(curr_doc)
             y_train.append(1)
 
-    print("Processed hockey training set!")
+    end = time.time()
+    print("Completed processing of hockey training set. Time elapsed: {:.2f}s".format(end - start))
 
     # equalize the feature set lengths for all training examples
     for doc in X_train[:-1]:
@@ -115,6 +125,9 @@ def build_dataset():
 
     X_test = []
     y_test = []
+
+    print("\nPreprocessing autos test set...")
+    start = time.time()
 
     # parse and load in test set
     for file in glob.glob("../test/rec.autos/*"):
@@ -152,8 +165,12 @@ def build_dataset():
             X_test.append(curr_doc)
             y_test.append(0)
 
-    print("Processed autos test set!")
+    end = time.time()
+    print("Completed processing of autos test set. Time elapsed: {:.2f}s".format(end - start))
     
+    print("\nPreprocessing hockey test set...")
+    start = time.time()
+
     for file in glob.glob("../test/rec.sport.hockey/*"):
 
         with open(file, encoding = 'utf8', errors = 'ignore') as f:
@@ -189,7 +206,8 @@ def build_dataset():
             X_test.append(curr_doc)
             y_test.append(1)
 
-    print("Processed hockey test set!")
+    end = time.time()
+    print("Completed processing of hockey test set. Time elapsed: {:.2f}s".format(end - start))
 
     X_test = np.asarray(X_test)
     y_test = np.asarray(y_test)
