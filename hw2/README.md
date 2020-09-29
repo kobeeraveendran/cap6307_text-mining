@@ -1,21 +1,24 @@
-## Hidden Markov Models and Binary Text Classification on 20 Newsgroups
+# Hidden Markov Models and Binary Text Classification on 20 Newsgroups
 
-### Setting up the dataset
+## Setting up the dataset
 
-#### Manual
+### Manual
+
 1. Download the [20Newsgroups dataset](http://qwone.com/~jason/20Newsgroups/20news-bydate.tar.gz).
 2. Move the `.tar.gz` file to this project's root directory and extract its contents.
 3. Rename `20news-bydate-train/` to `train/` and `20news-bydate-test/` to `test/` (you can now delete `20news-bydate.tar.gz`).
 4. In the train and test folders, remove all folders except `rec.autos` and `rec.sport.hockey`.
 
-#### Automatic
+### Automatic
+
 1. **Ensure you are in this project's root directory (the same as this README)** and run the setup script (requires `curl`) with:
 
 ```bash
 ./setup.sh
 ```
 
-### Usage
+## Usage
+
 In order to run the program, you can use my provided conda environment or install the necessary libraries yourself.
 
 Activate my conda environment by running the following in your terminal at the project's root directory:
@@ -34,4 +37,10 @@ Install the following packages (with exact versions specified) using your packag
 * numpy == 1.19.1
 * scikit-learn == 0.23.2
 
-Once complete, run `text_classifer.py`.
+Regardless of which method you chose, you will also need to install spaCy's English language NLP model, which can be done by running:
+
+```bash
+python -m spacy download en_core_web_sm
+```
+
+Once complete, run `text_classifier.py`.
