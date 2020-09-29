@@ -1,7 +1,7 @@
 import numpy as np
 import spacy
 import glob
-
+from sklearn.utils import shuffle
 
 def build_dataset():
 
@@ -106,12 +106,17 @@ def build_dataset():
         if len(doc) < len(X[-1]):
             doc.extend([0] * (len(X[-1]) - len(doc)))
 
-    X = np.asarray(X)
-    y = np.asarray(y)
+    X_train = np.asarray(X)
+    y_train = np.asarray(y)
 
-    return X, y, feature_map
+    X_train, y_train = shuffle(X_train, y_train)
+
+
+    return X_train, y_train, feature_map
 
 if __name__ == "__main__":
 
     X, y, feature_map = build_dataset()
-    
+    print("X shape: ", X.shape)
+    print("y shape: ", y.shape)
+    print("Feature set size: ", len(feature_map))
