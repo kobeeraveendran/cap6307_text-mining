@@ -14,7 +14,7 @@
 1. **Ensure you are in this project's root directory (the same as this README)** and run the setup script (requires `curl`) with:
 
 ```bash
-./setup.sh
+bash setup.sh
 ```
 
 ## Usage
