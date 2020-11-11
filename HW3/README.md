@@ -4,9 +4,9 @@
 
 ### Install PyROUGE
 
-My workspace is Ubuntu 18.04, so I more or less followed the instructions listed <a href = "https://stackoverflow.com/a/57686103/9464919" target = "_blank">here</a>.
+My workspace is Ubuntu 18.04, so I more or less followed the instructions listed [here](https://stackoverflow.com/a/57686103/9464919).
 
-If you're on Windows instead, see the instructions listed <a href = "https://stackoverflow.com/a/47045437/9464919" target = "_blank">here</a> (note: I have not managed to test this on Windows, so using WSL is recommended if this method fails).
+If you're on Windows instead, see the instructions listed [here](https://stackoverflow.com/a/47045437/9464919) (note: I have not managed to test this on Windows, so using WSL is recommended if this method fails).
 
 A quick overview of the steps/commands I used are:
 
