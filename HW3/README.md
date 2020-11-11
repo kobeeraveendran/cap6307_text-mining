@@ -4,9 +4,11 @@
 
 ### Install PyROUGE
 
-My workspace is in Ubuntu 18.04, so I more or less followed the instructions listed [here](https://stackoverflow.com/a/57686103/9464919).
+My workspace is Ubuntu 18.04, so I more or less followed the instructions listed [here](https://stackoverflow.com/a/57686103/9464919).
 
-A quick overview of the steps/commands used are:
+If you're on Windows instead, see the instructions listed [here](https://stackoverflow.com/a/47045437/9464919) (note: I have not managed to test this on Windows, so using WSL is recommended if this method fails).
+
+A quick overview of the steps/commands I used are:
 
 1. Install `pyrouge` from source at it's official repository: 
 
